@@ -12,7 +12,7 @@ CHAT_HISTORY = [
 ]
 
 # def getCharacterJSON(user_prompt: str) -> str:
-def getLoreJSON(user_prompt: str):
+def chatWithBot(user_prompt: str):
     CHAT_HISTORY.append(
         {"role": "user", "content": user_prompt}
     )
@@ -42,9 +42,9 @@ def getLoreJSON(user_prompt: str):
 if __name__ == "__main__":
     response = ""
     while True:
-        prompt = input("Character prompt: ")
+        prompt = input("Tell me what you want: ")
         # prompt = input()
-        response = getLoreJSON(prompt)
+        response = chatWithBot(prompt)
         CHAT_HISTORY.append(
         {
             "role": "assistant", "content": response
