@@ -3,9 +3,8 @@ import { useState } from 'react'
 
 import axios from 'axios' 
  
-const ChatBox = ( ) => {
+const ChatBox = ({onResponse}) => {
     const [input, setInput] = useState('')
-    const [responses, setResponses] = useState([])
     
     // handles sending, sets chatbox to empty after sending
     const handleSend = () => {
@@ -24,12 +23,13 @@ const ChatBox = ( ) => {
             items: traits // each item is [summary, explanation]
           }));
   
-          setResponses(formatted_responses)
+          // setResponses(formatted_responses)
           console.log(JSON.stringify(formatted_responses, null, 2));
           // console.log(JSON.stringify(responses, null, 2));
   
           // console.log(response);
           console.log(formatted_responses);
+          onResponse(formatted_responses)
         })
         .catch(function (error) {
           if (error.response) {
