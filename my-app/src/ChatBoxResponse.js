@@ -1,17 +1,20 @@
-import { useState } from 'react';
-
-const parseResponses = (rawResponses) => {
-    const traits = rawResponses[0]["items"]
-    return traits;
-};
-
+import './ChatBoxResponse.css';
 
 const ChatBoxResponse = ({ responses }) => {
-    const [response, setResponses] = useState('')
-
     return (
         <div className='chat-responses'>
-            {responses}
+            {responses.map((section, index) => (
+                <div key={index} className="response-box">
+                <h2 className="response-title">{section.title}</h2>
+                <ul className="response-items">
+                {section.items.map(([summary, explanation], idx) => (
+                    <li key={idx} className="response-item">
+                    <strong>{summary}:</strong> {explanation}
+                    </li>
+                ))}
+                </ul>
+            </div>
+            ))}
 
         </div>
     )
