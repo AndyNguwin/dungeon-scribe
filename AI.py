@@ -18,7 +18,8 @@ system_prompt = (
     "Do not explain or apologize. Do not output anything other than the JSON.\n"
 )
 
-def getCharacterJSON(user_prompt: str) -> str:
+# def getCharacterJSON(user_prompt: str) -> dict[str, list[str, str]]:
+def getCharacterJSON(user_prompt: str):
   kwargs = {
     "modelId": "mistral.mistral-large-2402-v1:0",
     "contentType": "application/json",
@@ -49,10 +50,24 @@ def getCharacterJSON(user_prompt: str) -> str:
     # print(content.keys())
     return json.dumps(content)
   except json.JSONDecodeError as e:
-    print("Invalid JSON: ", e)
+    # print("Invalid JSON: ", e)
     return json.dumps({})
 
+
+def _displayNotes(notes) -> None:
+  print("\nHere are notes to enhance your roleplaying abilities with confidence!")
+  for k in notes.keys():
+    print("\n", k.upper())
+    for note, reason in notes[k]:
+      print("\t", note, "|", reason)
+
+
 if __name__ == "__main__":
-  prompt = input("Character prompt: ")
-  print(json.loads(getCharacterJSON(prompt)))
+  response = "{}"
+  while response == "{}":
+    prompt = input("Character prompt: ")
+    response = getCharacterJSON(prompt)
+    if response == "{}":
+      print("I had an error understanding your input. Please try again.") 
+  _displayNotes(json.loads(response))
 
