@@ -1,4 +1,4 @@
-import './RoleplayNotes.css';
+import './App.css';
 import ChatBox from './ChatBox';
 
 function RoleplayNotes() {

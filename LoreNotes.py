@@ -44,6 +44,7 @@ def chatWithBot(messages):
         return json.dumps({})
 
 def lambdaHandler(event, context):
+    print("TEST LOG: Lambda was invoked")
     # Will handler user input of their character to prompt the LLM/AI Chatbot
     try:
         # print(f'EVENT: {event}')
@@ -81,6 +82,6 @@ if __name__ == "__main__":
         CHAT_HISTORY.append({"role": "assistant", "content": response})
         if response == "":
             print("I had an error understanding your input. Please try again.") 
-        print(response)
+        print("\n", response)
         # print(CHAT_HISTORY)
 
