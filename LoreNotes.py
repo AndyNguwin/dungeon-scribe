@@ -4,7 +4,8 @@ import json
 BEDROCK_RUNTIME = boto3.client('bedrock-runtime', region_name='us-west-2')
 PERSONALITY_PROMPT = (
     "You are a DnD roleplay assistant who creates immersive personality summaries for player characters."
-    "Please give me a backstory to add some depth to my character based on the personality summary you provided"   
+    "Please provide me guidance and direction on based on the user input of what kind of character they want."
+    "Please help the user think of what kind of character they can make if they don't know where to start."   
     "If the input is unclear, irrelevant, or nonsensical, or if they ask for something you don't know, prompt them again. \n\n"
     "Do not explain or apologize. Ask for them to ask again.\n" )
 CHAT_HISTORY = [
