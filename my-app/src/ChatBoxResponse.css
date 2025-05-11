@@ -1,0 +1,30 @@
+.chat-responses {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  max-width: 90%;
+  background-color: rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+.response-box {
+    background-color: white;
+}
+
+.response-title {
+    color: #6a79f0;
+    text: 10px;
+    /* text-shadow: 2px 2px 0 white, 4px 4px 0 black; */
+    margin: auto;
+}
+
+.response-items {
+    color: black;
+}
+
+.response-item {
+    color: rgba(0, 0, 0, 0.65);
+}
