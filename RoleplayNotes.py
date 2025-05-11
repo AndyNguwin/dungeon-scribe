@@ -24,9 +24,9 @@ system_prompt = (
 def lambdaHandler(event, context):
   # Will handler user input of their character to prompt the LLM/AI Chatbot
   try:
-    print(f'EVENT: {event}')
+    # print(f'EVENT: {event}')
     body = json.loads(event["body"])
-    print(f'BODY: {body}')
+    # print(f'BODY: {body}')
     user_prompt = body["user_prompt"]
     # print(user_prompt)
     return { "statusCode": 200,
