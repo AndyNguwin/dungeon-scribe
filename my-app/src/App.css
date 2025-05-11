@@ -17,7 +17,8 @@ html, body {
   align-items: center;
   flex-direction: column;
   display: flex;
-  height: 400px;
+  height: 220px;
+  margin-bottom: 50px;
 }
 
 .App-header {
