@@ -14,17 +14,19 @@ function App() {
       axios.post("https://sr1sgbqa1h.execute-api.us-west-2.amazonaws.com/roleplay-notes", {
         "user_prompt" : input}, {header: {"Content-Type": "application/json" }})
       .then(function (response) {
-        console.log("YIPEE");
+        // console.log("YIPEE");
         const formatted_responses = Object.entries(response).map(([category, traits]) => ({
           title: category.replace(/_/g, ' ').toUpperCase(), // e.g. CORE_TRAITS
           items: traits // each item is [summary, explanation]
         }));
 
         setResponses(formatted_responses)
+        console.log(JSON.stringify(formatted_responses, null, 2));
+        // console.log(JSON.stringify(responses, null, 2));
 
-        console.log(response);
+        // console.log(response);
         console.log(formatted_responses);
-        console.log("BOOO");
+        // console.log("BOOO");
       })
       .catch(function (error) {
         if (error.response) {
