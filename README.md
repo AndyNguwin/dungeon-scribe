@@ -1,7 +1,5 @@
-
+![screenshot](https://i.imgur.com/FvXa4Mq.png)
 <h1 align="center">
-  <br>
-  <a href="http://www.amitmerchant.com/electron-markdownify"><img src="https://raw.githubusercontent.com/amitmerchant1990/electron-markdownify/master/app/img/markdownify.png" alt="Markdownify" width="200"></a>
   <br>
   The Dungeon Scribe
   <br>
@@ -14,8 +12,6 @@
   <a href="#technologies-used">Technologies Used</a> •
   <a href="#team-members-and-contributions">Team Members and Contributions</a> •
 </p>
-
-![screenshot](https://raw.githubusercontent.com/amitmerchant1990/electron-markdownify/master/app/img/markdownify.gif)
 
 ## Key Features
 
