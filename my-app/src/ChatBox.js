@@ -21,7 +21,6 @@ const ChatBox = () => {
         if (e.key === 'Enter') handleSend()
     }
 
-  
   return (
     <div className="chat-input-area">
       <input
