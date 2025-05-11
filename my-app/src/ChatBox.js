@@ -1,3 +1,4 @@
+import './ChatBox.css';
 import { useState } from 'react'
 
 const ChatBox = () => {
@@ -26,7 +27,7 @@ const ChatBox = () => {
       <input
         type="text"
         className="chat-input"
-        placeholder="Type your message..."
+        placeholder="Tell me tell me..."
         value={input}
         onChange={(e) => setInput(e.target.value)}
         onKeyDown={handleKeyDown}

@@ -13,15 +13,15 @@ function App() {
   
   return (
     <div className="App">
-      <header className="App-header">
-        <img alt="oops" class="resize" src="https://gamepedia.cursecdn.com/maplestory2_gamepedia/3/38/Slime.png" />
-        <p class="inputbox">
+      <div className="App-header">
+        <div className="Top">
+          <img alt="Slime" className="image" src="https://gamepedia.cursecdn.com/maplestory2_gamepedia/3/38/Slime.png" />
+        </div>
+        <div class="inputbox">
           <ChatBox onSend={sendIt}> </ChatBox>
-        </p>
-        <p>
-          <code>Tell me about your character!</code>.
-        </p>
-      </header>
+        </div>
+        <p><code> Tell me about your character! </code></p>
+      </div>
     </div>
   );
 }

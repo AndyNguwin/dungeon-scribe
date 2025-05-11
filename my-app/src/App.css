@@ -1,27 +1,35 @@
-/* .App {
-  text-align: center;
+html, body {
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-} */
+.App {
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+}
 
-/* @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-} */
+.Top {
+  background-color: #5568f2;
+  width: 100%;
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+  height: 400px;
+}
 
 .App-header {
-  background-color: #5568f2;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
+  /* background-color: #5568f2; */
+  /* min-height: 100vh; */
+  flex-direction: column;
   font-size: calc(10px + 2vmin);
   color: white;
+  width: 100%;
+  display: flex;
 }
 
 .App-link {
@@ -38,17 +46,21 @@
 }
 
 /* Stuff */
-.resize {
-  width: 10%;
-  height: 50%;
+.image {
+  width: auto;
+  height: 200px;
+  display: block;
+  margin: 0 auto;
 }
 
 .inputbox {
   display: flex;
   padding: 12px;
   width: 80%;
-  border-top: 1px solid #ddd;
-  background-color: white;
+  border-top: 3px solid #ddd;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px;
+  background: rgba(0, 0, 0, 0.05);  /* border-radius: 10px; */
+  border: 2px solid rgba(0, 0, 0, 0.1);
   color: black;
 }
 
@@ -94,70 +106,4 @@
   flex-direction: column;
   gap: 8px;
   background-color: #f9f9f9;
-}
-
-/* Input area */
-.chat-input-area {
-  display: flex;
-  padding: 12px;
-  border-top: 1px solid #ddd;
-  background-color: white;
-}
-
-.chat-input {
-  flex: 1;
-  padding: 10px 14px;
-  border: 1px solid #ccc;
-  border-radius: 20px;
-  outline: none;
-  font-size: 14px;
-}
-
-.chat-send-button {
-  margin-left: 8px;
-  padding: 10px 16px;
-  background-color: #2563eb;
-  color: white;
-  border: none;
-  border-radius: 20px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.chat-send-button:hover {
-  background-color: #1d4ed8;
-}
-
-/* Messages */
-.message-row {
-  display: flex;
-}
-
-.message-row.user {
-  justify-content: flex-end;
-}
-
-.message-row.bot {
-  justify-content: flex-start;
-}
-
-.message-bubble {
-  padding: 10px 14px;
-  border-radius: 20px;
-  max-width: 70%;
-  font-size: 14px;
-  line-height: 1.4;
-}
-
-.user-bubble {
-  background-color: #2563eb;
-  color: white;
-  border-bottom-right-radius: 0;
-}
-
-.bot-bubble {
-  background-color: #e5e7eb;
-  color: black;
-  border-bottom-left-radius: 0;
 }

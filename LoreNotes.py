@@ -28,7 +28,6 @@ def getLoreJSON(user_prompt: str):
         "top_p": 0.9
         })
     }
-
   
     response = BEDROCK_RUNTIME.invoke_model(**kwargs)
     try:
