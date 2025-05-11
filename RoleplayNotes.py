@@ -8,7 +8,7 @@ system_prompt = (
     "You will provide at least 3 personalities, core traits, mannerisms, speech patterns, values, and any extra roleplaying notes"
     "with reasonings relevant to the user input given."
     "Please format your response strictly only as a valid JSON like the following: "
-    '{ '+
+    '{ '
     '"personality": [["string", "5-10 words reasoning"]], '
     '"core_traits": [["string", "5-10 words reasoning"]], '
     '"mannerisms": [["string", "5-10 words reasoning"]], '
@@ -20,6 +20,31 @@ system_prompt = (
     "If the input is unclear, irrelevant, or nonsensical, respond with only: {}\n\n"
     "Do not explain or apologize. Do not output anything other than the JSON.\n"
 )
+
+def lambdaHandler(event, context):
+  # Will handler user input of their character to prompt the LLM/AI Chatbot
+  try:
+    print(f'EVENT: {event}')
+    body = json.loads(event["body"])
+    print(f'BODY: {body}')
+    user_prompt = body["user_prompt"]
+    # print(user_prompt)
+    return { "statusCode": 200,
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": getCharacterJSON(user_prompt)
+    }
+  except Exception as e:
+    print("ERROR: ", str(e))
+    raise e
+    # return { "statusCode": 500,
+    #         "headers": {
+    #           "Content-Type": "application/json"
+    #         },
+    #         "body": json.dumps({"error": str(e)})
+    # }
+
 
 # def getCharacterJSON(user_prompt: str) -> dict[str, list[str, str]]:
 def getCharacterJSON(user_prompt: str):
