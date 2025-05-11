@@ -25,7 +25,9 @@ function RoleplayNotes() {
     <div className="App">
       <div className="App-header">
         <div className="Top">
+            <h1> The Dungeon Scribe </h1>
           <img alt="Slime" className="image" src="https://gamepedia.cursecdn.com/maplestory2_gamepedia/3/38/Slime.png" />
+          <h6> Your DnD roleplay AI assistant! 🐵 </h6>
         </div>
         <div className="inputbox"> <ChatBox onResponse={handleChatResponse}> </ChatBox> </div>
         <p><code> Tell me about your character! </code></p>
