@@ -20,6 +20,7 @@ CHAT_HISTORY = [
 # def getCharacterJSON(user_prompt: str) -> str:
 def chatWithBot(messages):
     # Takes in the chat history, which is a list of dictionaries holding message information
+    # Returns response of the chatbot
     kwargs = {
         "modelId": "mistral.mistral-large-2402-v1:0",
         "contentType": "application/json",
@@ -48,13 +49,16 @@ def lambdaHandler(event, context):
         # print(f'EVENT: {event}')
         body = json.loads(event["body"])
         # print(f'BODY: {body}')
-        user_prompt = body["user_prompt"]
+        messages = body["messages"]
         # print(user_prompt)
-        return { "statusCode": 200,
-                "headers": {
-                    "Content-Type": "application/json"
-                }
-                # "body": getCharacterJSON(user_prompt)
+        return { 
+            "statusCode": 200,
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "body": json.dumps({
+                "message": chatWithBot(messages)
+            })
         }
     except Exception as e:
         print("ERROR: ", str(e))
