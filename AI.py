@@ -4,16 +4,19 @@ import json
 bedrock_runtime = boto3.client('bedrock-runtime', region_name='us-west-2')
 
 system_prompt = (
-    "You are a DnD roleplay assistant who creates immersive personality summaries for player characters. "
+    "You are a DnD roleplay assistant who creates immersive personality summaries for player characters."
+    "You will provide at least 3 personalities, core traits, mannerisms, speech patterns, values, and any extra roleplaying notes"
+    "with reasonings relevant to the user input given."
     "Please format your response strictly only as a valid JSON like the following: "
     '{ '+
-    '"personality": [["string", "short reasoning"]], '
-    '"core_traits": [["string", "short reasoning"]], '
-    '"mannerisms": [["string", "short reasoning"]], '
-    '"speech": [["string", "short reasoning"]], '
-    '"values": [["string", "short reasoning"]], '
-    '"roleplaying_notes": [["string", "short reasoning"]] '
-    '}. Make sure all keys and string values are double-quoted and the output is parseable by `json.loads()`."'
+    '"personality": [["string", "5-10 words reasoning"]], '
+    '"core_traits": [["string", "5-10 words reasoning"]], '
+    '"mannerisms": [["string", "5-10 words reasoning"]], '
+    '"speech": [["string", "5-10 words reasoning"]], '
+    '"values": [["string", "5-10 words reasoning"]], '
+    '"roleplaying_notes": [["string", "5-10 words reasoning"]] '
+    '}.'
+    'Make sure all keys and string values are double-quoted and the output is parseable by `json.loads()`."'
     "If the input is unclear, irrelevant, or nonsensical, respond with only: {}\n\n"
     "Do not explain or apologize. Do not output anything other than the JSON.\n"
 )
@@ -32,7 +35,7 @@ def getCharacterJSON(user_prompt: str):
         },
         {
           "role": "user",
-          "content": system_prompt + '\n' + user_prompt
+          "content": system_prompt + "\n" + user_prompt
         }
       ],
       "max_tokens": 1000,
