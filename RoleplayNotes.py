@@ -1,12 +1,12 @@
-import boto3
+from openai import OpenAI
 import json
 
-bedrock_runtime = boto3.client('bedrock-runtime', region_name='us-west-2')
+client = OpenAI()
 
 system_prompt = (
-    "You are a DnD roleplay assistant who creates immersive personality summaries for player characters."
-    "You will provide at least 3 personalities, core traits, mannerisms, speech patterns, values, and any extra roleplaying notes"
-    "with reasonings relevant to the user input given."
+    "You are a DnD roleplay assistant who creates immersive personality summaries for player characters. "
+    "You will provide at least 3 personalities, core traits, mannerisms, speech patterns, values, and any extra roleplaying notes "
+    "with reasonings relevant to the user input given. "
     "Please format your response strictly only as a valid JSON like the following: "
     '{ '
     '"personality": [["string", "5-10 words reasoning"]], '
@@ -15,11 +15,22 @@ system_prompt = (
     '"speech": [["string", "5-10 words reasoning"]], '
     '"values": [["string", "5-10 words reasoning"]], '
     '"roleplaying_notes": [["string", "5-10 words reasoning"]] '
-    '}.'
-    'Make sure all keys and string values are double-quoted and the output is parseable by `json.loads()`."'
+    '}. '
+    'Make sure all keys and string values are double-quoted and the output is parseable by `json.loads()`. '
     "If the input is unclear, irrelevant, or nonsensical, respond with only: {}\n\n"
     "Do not explain or apologize. Do not output anything other than the JSON.\n"
 )
+
+def getCharacterJSON(user_prompt: str):
+  # print(f"Sending: {user_prompt}")
+  response = client.responses.create(
+    model="gpt-4.1",
+    instructions = system_prompt,
+    input = user_prompt,
+  )
+  # print("Sent")
+  # print(response.output_text)
+  return response.output_text
 
 def lambdaHandler(event, context):
   # Will handler user input of their character to prompt the LLM/AI Chatbot
@@ -44,43 +55,6 @@ def lambdaHandler(event, context):
     #         },
     #         "body": json.dumps({"error": str(e)})
     # }
-
-
-# def getCharacterJSON(user_prompt: str) -> dict[str, list[str, str]]:
-def getCharacterJSON(user_prompt: str):
-  kwargs = {
-    "modelId": "mistral.mistral-large-2402-v1:0",
-    "contentType": "application/json",
-    "accept": "application/json",
-    "body": json.dumps({
-      "messages": [
-        {
-          "role": "system",
-          "content": system_prompt
-        },
-        {
-          "role": "user",
-          "content": system_prompt + "\n" + user_prompt
-        }
-      ],
-      "max_tokens": 1000,
-      "temperature": 0.8,
-      "top_p": 0.9
-    })
-  }
-  
-
-  response = bedrock_runtime.invoke_model(**kwargs)
-  try:
-    body = json.loads(response['body'].read())
-    # print(body['choices'][0]['message']['content'])
-    content = json.loads(body['choices'][0]['message']['content'])
-    # print(content.keys())
-    return json.dumps(content)
-  except json.JSONDecodeError as e:
-    # print("Invalid JSON: ", e)
-    return json.dumps({})
-
 
 def _displayNotes(notes) -> None:
   print("\nHere are notes to enhance your roleplaying abilities with confidence!")

@@ -15,8 +15,13 @@ const ChatBox = ({onResponse}) => {
     
     const onSend = async (input) => {
       try {
-        axios.post("https://sr1sgbqa1h.execute-api.us-west-2.amazonaws.com/roleplay-notes", {
-          "user_prompt" : input}, {header: {"Content-Type": "application/json" }})
+        axios.post("https://sr1sgbqa1h.execute-api.us-west-2.amazonaws.com/roleplay-notes", 
+        {
+          "user_prompt" : input
+        }, 
+        {
+          header: {"Content-Type": "application/json" }
+        })
         .then(function (response) {
           const formatted_responses = Object.entries(response).map(([category, traits]) => ({
             title: category.replace(/_/g, ' ').toUpperCase(), // e.g. CORE_TRAITS
